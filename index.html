@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b6efd">
+<link rel="manifest" href="manifest.json">
+<title>オピオイド換算</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  background:#f3f5f7;
+  color:#222
+}
+
+main{
+  max-width:760px;
+  margin:0 auto;
+  padding:18px 14px 30px
+}
+
+h1{
+  font-size:24px;
+  text-align:center;
+  margin:8px 0 22px
+}
+
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+  margin-bottom:14px
+}
+
+label{
+  display:block;
+  font-weight:700;
+  margin-bottom:7px
+}
+
+select,input,button{
+  width:100%;
+  font-size:18px;
+  min-height:50px;
+  border-radius:10px
+}
+
+select,input{
+  border:1px solid #bbb;
+  padding:8px 12px;
+  background:#fff
+}
+
+.field{
+  margin-bottom:16px
+}
+
+.field:last-child{
+  margin-bottom:0
+}
+
+.arrow{
+  text-align:center;
+  font-size:28px;
+  font-weight:700;
+  margin:4px 0 14px
+}
+
+button{
+  border:0;
+  background:#0b6efd;
+  color:#fff;
+  font-weight:700;
+  margin-top:4px
+}
+
+button:active{
+  transform:scale(.99)
+}
+
+.result-card{
+  text-align:center
+}
+
+.result-label{
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:12px
+}
+
+.result-drug{
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:10px
+}
+
+.result-value{
+  font-size:34px;
+  font-weight:700;
+  margin:8px 0 4px
+}
+
+.result-note{
+  font-size:13px;
+  color:#666;
+  margin-top:12px
+}
+
+.error{
+  color:#c62828;
+  font-weight:700;
+  text-align:center;
+  font-size:15px;
+  margin-top:12px
+}
+
+.note{
+  text-align:center;
+  font-size:13px;
+  color:#555;
+  margin-top:14px
+}
+
+.small{
+  font-size:13px;
+  color:#666;
+  margin-top:8px
+}
+
+@media(max-width:520px){
+  main{
+    padding:12px 10px 24px
+  }
+
+  h1{
+    font-size:21px
+  }
+
+  .card{
+    padding:14px
+  }
+
+  .result-value{
+    font-size:30px
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+
+<h1>オピオイド換算</h1>
+
+
+<section class="card">
+
+  <div class="field">
+
+    <label for="fromDrug">変更前の薬剤</label>
+
+    <select id="fromDrug">
+
+      <option value="モルヒネ内服 mg">
+        モルヒネ内服 mg
+      </option>
+
+      <option value="ヒドロモルフォン内服 mg">
+        ヒドロモルフォン内服 mg
+      </option>
+
+      <option value="オキシコドン内服 mg">
+        オキシコドン内服 mg
+      </option>
+
+      <option value="フェンタニル貼付剤（1日用） mg">
+        フェンタニル貼付剤（1日用） mg
+      </option>
+
+      <option value="モルヒネ坐剤 mg">
+        モルヒネ坐剤 mg
+      </option>
+
+      <option value="モルヒネ注射 mg">
+        モルヒネ注射 mg
+      </option>
+
+      <option value="ヒドロモルフォン注射 mg">
+        ヒドロモルフォン注射 mg
+      </option>
+
+      <option value="オキシコドン注射 mg">
+        オキシコドン注射 mg
+      </option>
+
+      <option value="フェンタニル注射 μg">
+        フェンタニル注射 μg
+      </option>
+
+      <option value="トラマドール内服 mg">
+        トラマドール内服 mg
+      </option>
+
+      <option value="デュロテップパッチ（3日用） mg">
+        デュロテップパッチ（3日用） mg
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label for="amount">変更前の量</label>
+
+    <input
+      id="amount"
+      type="number"
+      inputmode="decimal"
+      step="any"
+      min="0"
+      value="0"
+    >
+
+  </div>
+
+
+  <div class="arrow">
+    ↓
+  </div>
+
+
+  <div class="field">
+
+    <label for="toDrug">変更後の薬剤</label>
+
+    <select id="toDrug">
+
+      <option value="モルヒネ内服 mg">
+        モルヒネ内服 mg
+      </option>
+
+      <option value="ヒドロモルフォン内服 mg">
+        ヒドロモルフォン内服 mg
+      </option>
+
+      <option value="オキシコドン内服 mg">
+        オキシコドン内服 mg
+      </option>
+
+      <option value="フェンタニル貼付剤（1日用） mg">
+        フェンタニル貼付剤（1日用） mg
+      </option>
+
+      <option value="モルヒネ坐剤 mg">
+        モルヒネ坐剤 mg
+      </option>
+
+      <option value="モルヒネ注射 mg">
+        モルヒネ注射 mg
+      </option>
+
+      <option value="ヒドロモルフォン注射 mg">
+        ヒドロモルフォン注射 mg
+      </option>
+
+      <option value="オキシコドン注射 mg">
+        オキシコドン注射 mg
+      </option>
+
+      <option value="フェンタニル注射 μg">
+        フェンタニル注射 μg
+      </option>
+
+      <option value="トラマドール内服 mg">
+        トラマドール内服 mg
+      </option>
+
+      <option value="デュロテップパッチ（3日用） mg">
+        デュロテップパッチ（3日用） mg
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <button id="calc">
+    計算
+  </button>
+
+  <div id="error" class="error"></div>
+
+</section>
+
+
+<section id="resultCard" class="card result-card" style="display:none">
+
+  <div class="result-label">
+    変更後の量
+  </div>
+
+  <div id="resultDrug" class="result-drug"></div>
+
+  <div id="resultValue" class="result-value"></div>
+
+  <div class="result-note">
+    ※ 指定された換算比に基づく参考値
+  </div>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+
+/*
+ * 各薬剤のモルヒネ内服換算比
+ *
+ * 例：
+ * ヒドロモルフォン内服 1 mg
+ * → モルヒネ内服 5 mg相当
+ *
+ * ヒドロモルフォン注射 1 mg
+ * → モルヒネ内服 25 mg相当
+ */
+
+const ratios = [
+
+  ["モルヒネ内服 mg", 1, "mg"],
+
+  ["ヒドロモルフォン内服 mg", 0.2, "mg"],
+
+  ["オキシコドン内服 mg", 2/3, "mg"],
+
+  ["フェンタニル貼付剤（1日用） mg", 1/30, "mg"],
+
+  ["モルヒネ坐剤 mg", 2/3, "mg"],
+
+  ["モルヒネ注射 mg", 0.5, "mg"],
+
+  ["ヒドロモルフォン注射 mg", 0.04, "mg"],
+
+  ["オキシコドン注射 mg", 0.5, "mg"],
+
+  ["フェンタニル注射 μg", 10, "μg"],
+
+  ["トラマドール内服 mg", 5, "mg"],
+
+  ["デュロテップパッチ（3日用） mg", 0.07, "mg"]
+
+];
+
+
+
+function formatValue(value, unit){
+
+  if(unit === "μg"){
+
+    return Math.round(value) + " μg";
+
+  }
+
+  return value.toFixed(2) + " mg";
+
+}
+
+
+
+function calculate(){
+
+  const amount =
+    Number(document.getElementById("amount").value);
+
+  const fromDrug =
+    document.getElementById("fromDrug").value;
+
+  const toDrug =
+    document.getElementById("toDrug").value;
+
+  const error =
+    document.getElementById("error");
+
+  const resultCard =
+    document.getElementById("resultCard");
+
+  const resultDrug =
+    document.getElementById("resultDrug");
+
+  const resultValue =
+    document.getElementById("resultValue");
+
+
+  error.textContent = "";
+
+  resultCard.style.display = "none";
+
+
+  if(
+    document.getElementById("amount").value === "" ||
+    !Number.isFinite(amount) ||
+    amount < 0
+  ){
+
+    error.textContent =
+      "変更前の量を入力してください。";
+
+    return;
+
+  }
+
+
+  const fromRatio =
+    ratios.find(r => r[0] === fromDrug);
+
+  const toRatio =
+    ratios.find(r => r[0] === toDrug);
+
+
+  if(!fromRatio || !toRatio){
+
+    error.textContent =
+      "薬剤を選択してください。";
+
+    return;
+
+  }
+
+
+  let result;
+
+
+  /*
+   * ==================================================
+   * ヒドロモルフォン同士の特別換算
+   * ==================================================
+   *
+   * 内服 → 注射
+   * 5 mg → 1 mg
+   *
+   * 注射 → 内服
+   * 1 mg → 2.5 mg
+   */
+
+
+  if(
+    fromDrug === "ヒドロモルフォン内服 mg" &&
+    toDrug === "ヒドロモルフォン注射 mg"
+  ){
+
+    result = amount / 5;
+
+  }
+
+
+  else if(
+    fromDrug === "ヒドロモルフォン注射 mg" &&
+    toDrug === "ヒドロモルフォン内服 mg"
+  ){
+
+    result = amount * 2.5;
+
+  }
+
+
+  /*
+   * 同じ薬剤の場合
+   */
+
+  else if(fromDrug === toDrug){
+
+    result = amount;
+
+  }
+
+
+  /*
+   * その他の薬剤
+   *
+   * これまでのモルヒネ換算比を利用して計算
+   *
+   * ① 変更前の薬剤をモルヒネ内服相当量に変換
+   *
+   * ② そのモルヒネ換算量を変更後の薬剤に変換
+   */
+
+  else{
+
+    const morphineEquivalent =
+      amount / fromRatio[1];
+
+    result =
+      morphineEquivalent * toRatio[1];
+
+  }
+
+
+  /*
+   * 結果表示
+   */
+
+  resultDrug.textContent =
+    toDrug;
+
+  resultValue.textContent =
+    formatValue(result, toRatio[2]);
+
+  resultCard.style.display = "block";
+
+}
+
+
+
+/*
+ * 計算ボタン
+ */
+
+document
+  .getElementById("calc")
+  .addEventListener("click", calculate);
+
+
+
+/*
+ * PWA用 Service Worker
+ */
+
+if("serviceWorker" in navigator){
+
+  window.addEventListener("load", () => {
+
+    navigator.serviceWorker
+      .register("./service-worker.js")
+      .catch(error => {
+
+        console.error(
+          "Service Worker registration failed:",
+          error
+        );
+
+      });
+
+  });
+
+}
+
+
+</script>
+
+</body>
+</html>
