@@ -493,14 +493,20 @@ function calculate() {
    * 1 mg → 2.5 mg
    */
 
-  else if (
-    fromDrug === "ヒドロモルフォン注射 mg" &&
-    toDrug === "ヒドロモルフォン内服 mg"
-  ) {
+ else if (
+  fromDrug === "ヒドロモルフォン注射 mg" &&
+  toDrug === "ヒドロモルフォン内服 mg"
+) {
 
-    result = amount * 2.5;
-  }
+  const minResult = amount * 2.5;
+  const maxResult = amount * 3.0;
 
+  resultText =
+    minResult.toFixed(2) +
+    "～" +
+    maxResult.toFixed(2) +
+    " mg";
+}
 
   /*
    * 同じ薬剤
