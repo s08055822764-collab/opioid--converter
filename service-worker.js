@@ -1,4 +1,4 @@
-const CACHE_NAME = "opioid-converter-v1";
+const CACHE_NAME = "opioid-converter-v2";
 
 const CACHE_FILES = [
   "./",
