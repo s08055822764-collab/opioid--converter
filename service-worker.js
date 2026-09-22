@@ -1,4 +1,4 @@
-const CACHE_NAME = "opioid-converter-v2";
+const CACHE_NAME = "opioid-converter-v3";
 
 const CACHE_FILES = [
   "./",
@@ -34,8 +34,18 @@ self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
+    fetch(event.request)
+      .then(response => {
+        const responseClone = response.clone();
+
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, responseClone);
+        });
+
+        return response;
+      })
+      .catch(() => {
+        return caches.match(event.request);
+      })
   );
 });
