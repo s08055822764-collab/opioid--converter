@@ -1,157 +1,153 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b6efd">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="./manifest.json">
 <title>オピオイド換算</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-  background:#f3f5f7;
-  color:#222
+* {
+  box-sizing: border-box;
 }
 
-main{
-  max-width:760px;
-  margin:0 auto;
-  padding:18px 14px 30px
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+  background: #f3f5f7;
+  color: #222;
 }
 
-h1{
-  font-size:24px;
-  text-align:center;
-  margin:8px 0 22px
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 18px 14px 30px;
 }
 
-.card{
-  background:#fff;
-  border-radius:16px;
-  padding:18px;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);
-  margin-bottom:14px
+h1 {
+  font-size: 24px;
+  text-align: center;
+  margin: 8px 0 22px;
 }
 
-label{
-  display:block;
-  font-weight:700;
-  margin-bottom:7px
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
+  margin-bottom: 14px;
 }
 
-select,input,button{
-  width:100%;
-  font-size:18px;
-  min-height:50px;
-  border-radius:10px
+label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 7px;
 }
 
-select,input{
-  border:1px solid #bbb;
-  padding:8px 12px;
-  background:#fff
+select,
+input,
+button {
+  width: 100%;
+  font-size: 18px;
+  min-height: 50px;
+  border-radius: 10px;
 }
 
-.field{
-  margin-bottom:16px
+select,
+input {
+  border: 1px solid #bbb;
+  padding: 8px 12px;
+  background: #fff;
 }
 
-.field:last-child{
-  margin-bottom:0
+.field {
+  margin-bottom: 16px;
 }
 
-.arrow{
-  text-align:center;
-  font-size:28px;
-  font-weight:700;
-  margin:4px 0 14px
+.field:last-child {
+  margin-bottom: 0;
 }
 
-button{
-  border:0;
-  background:#0b6efd;
-  color:#fff;
-  font-weight:700;
-  margin-top:4px
+.arrow {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 4px 0 14px;
 }
 
-button:active{
-  transform:scale(.99)
+button {
+  border: 0;
+  background: #0b6efd;
+  color: #fff;
+  font-weight: 700;
+  margin-top: 4px;
 }
 
-.result-card{
-  text-align:center
+button:active {
+  transform: scale(.99);
 }
 
-.result-label{
-  font-size:16px;
-  font-weight:700;
-  margin-bottom:12px
+.result-card {
+  text-align: center;
 }
 
-.result-drug{
-  font-size:18px;
-  font-weight:700;
-  margin-bottom:10px
+.result-label {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
-.result-value{
-  font-size:34px;
-  font-weight:700;
-  margin:8px 0 4px
+.result-drug {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-.result-note{
-  font-size:13px;
-  color:#666;
-  margin-top:12px
+.result-value {
+  font-size: 34px;
+  font-weight: 700;
+  margin: 8px 0 4px;
 }
 
-.error{
-  color:#c62828;
-  font-weight:700;
-  text-align:center;
-  font-size:15px;
-  margin-top:12px
+.result-note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 12px;
 }
 
-.note{
-  text-align:center;
-  font-size:13px;
-  color:#555;
-  margin-top:14px
+.error {
+  color: #c62828;
+  font-weight: 700;
+  text-align: center;
+  font-size: 15px;
+  margin-top: 12px;
 }
 
-.small{
-  font-size:13px;
-  color:#666;
-  margin-top:8px
-}
-
-@media(max-width:520px){
-  main{
-    padding:12px 10px 24px
+@media (max-width: 520px) {
+  main {
+    padding: 12px 10px 24px;
   }
 
-  h1{
-    font-size:21px
+  h1 {
+    font-size: 21px;
   }
 
-  .card{
-    padding:14px
+  .card {
+    padding: 14px;
   }
 
-  .result-value{
-    font-size:30px
+  .result-value {
+    font-size: 30px;
   }
 }
 </style>
-
 </head>
 
 <body>
@@ -164,136 +160,134 @@ button:active{
 
   <div class="field">
 
-```
-<label for="fromDrug">変更前の薬剤</label>
+    <label for="fromDrug">変更前の薬剤</label>
 
-<select id="fromDrug">
+    <select id="fromDrug">
 
-  <option value="モルヒネ内服 mg">
-    モルヒネ内服 mg
-  </option>
+      <option value="モルヒネ内服 mg">
+        モルヒネ内服 mg
+      </option>
 
-  <option value="ヒドロモルフォン内服 mg">
-    ヒドロモルフォン内服 mg
-  </option>
+      <option value="ヒドロモルフォン内服 mg">
+        ヒドロモルフォン内服 mg
+      </option>
 
-  <option value="オキシコドン内服 mg">
-    オキシコドン内服 mg
-  </option>
+      <option value="オキシコドン内服 mg">
+        オキシコドン内服 mg
+      </option>
 
-  <option value="フェンタニル貼付剤（1日用） mg">
-    フェンタニル貼付剤（1日用） mg
-  </option>
+      <option value="フェンタニル貼付剤（1日用） mg">
+        フェンタニル貼付剤（1日用） mg
+      </option>
 
-  <option value="モルヒネ坐剤 mg">
-    モルヒネ坐剤 mg
-  </option>
+      <option value="モルヒネ坐剤 mg">
+        モルヒネ坐剤 mg
+      </option>
 
-  <option value="モルヒネ注射 mg">
-    モルヒネ注射 mg
-  </option>
+      <option value="モルヒネ注射 mg">
+        モルヒネ注射 mg
+      </option>
 
-  <option value="ヒドロモルフォン注射 mg">
-    ヒドロモルフォン注射 mg
-  </option>
+      <option value="ヒドロモルフォン注射 mg">
+        ヒドロモルフォン注射 mg
+      </option>
 
-  <option value="オキシコドン注射 mg">
-    オキシコドン注射 mg
-  </option>
+      <option value="オキシコドン注射 mg">
+        オキシコドン注射 mg
+      </option>
 
-  <option value="フェンタニル注射 μg">
-    フェンタニル注射 μg
-  </option>
+      <option value="フェンタニル注射 μg">
+        フェンタニル注射 μg
+      </option>
 
-  <option value="トラマドール内服 mg">
-    トラマドール内服 mg
-  </option>
+      <option value="トラマドール内服 mg">
+        トラマドール内服 mg
+      </option>
 
-  <option value="デュロテップパッチ（3日用） mg">
-    デュロテップパッチ（3日用） mg
-  </option>
+      <option value="デュロテップパッチ（3日用） mg">
+        デュロテップパッチ（3日用） mg
+      </option>
 
-</select>
-```
+    </select>
 
   </div>
+
 
   <div class="field">
 
-```
-<label for="amount">変更前の量</label>
+    <label for="amount">変更前の量</label>
 
-<input
-  id="amount"
-  type="number"
-  inputmode="decimal"
-  step="any"
-  min="0"
-  value="0"
->
-```
+    <input
+      id="amount"
+      type="number"
+      inputmode="decimal"
+      step="any"
+      min="0"
+      value="0"
+    >
 
   </div>
+
 
   <div class="arrow">
     ↓
   </div>
 
+
   <div class="field">
 
-```
-<label for="toDrug">変更後の薬剤</label>
+    <label for="toDrug">変更後の薬剤</label>
 
-<select id="toDrug">
+    <select id="toDrug">
 
-  <option value="モルヒネ内服 mg">
-    モルヒネ内服 mg
-  </option>
+      <option value="モルヒネ内服 mg">
+        モルヒネ内服 mg
+      </option>
 
-  <option value="ヒドロモルフォン内服 mg">
-    ヒドロモルフォン内服 mg
-  </option>
+      <option value="ヒドロモルフォン内服 mg">
+        ヒドロモルフォン内服 mg
+      </option>
 
-  <option value="オキシコドン内服 mg">
-    オキシコドン内服 mg
-  </option>
+      <option value="オキシコドン内服 mg">
+        オキシコドン内服 mg
+      </option>
 
-  <option value="フェンタニル貼付剤（1日用） mg">
-    フェンタニル貼付剤（1日用） mg
-  </option>
+      <option value="フェンタニル貼付剤（1日用） mg">
+        フェンタニル貼付剤（1日用） mg
+      </option>
 
-  <option value="モルヒネ坐剤 mg">
-    モルヒネ坐剤 mg
-  </option>
+      <option value="モルヒネ坐剤 mg">
+        モルヒネ坐剤 mg
+      </option>
 
-  <option value="モルヒネ注射 mg">
-    モルヒネ注射 mg
-  </option>
+      <option value="モルヒネ注射 mg">
+        モルヒネ注射 mg
+      </option>
 
-  <option value="ヒドロモルフォン注射 mg">
-    ヒドロモルフォン注射 mg
-  </option>
+      <option value="ヒドロモルフォン注射 mg">
+        ヒドロモルフォン注射 mg
+      </option>
 
-  <option value="オキシコドン注射 mg">
-    オキシコドン注射 mg
-  </option>
+      <option value="オキシコドン注射 mg">
+        オキシコドン注射 mg
+      </option>
 
-  <option value="フェンタニル注射 μg">
-    フェンタニル注射 μg
-  </option>
+      <option value="フェンタニル注射 μg">
+        フェンタニル注射 μg
+      </option>
 
-  <option value="トラマドール内服 mg">
-    トラマドール内服 mg
-  </option>
+      <option value="トラマドール内服 mg">
+        トラマドール内服 mg
+      </option>
 
-  <option value="デュロテップパッチ（3日用） mg">
-    デュロテップパッチ（3日用） mg
-  </option>
+      <option value="デュロテップパッチ（3日用） mg">
+        デュロテップパッチ（3日用） mg
+      </option>
 
-</select>
-```
+    </select>
 
   </div>
+
 
   <button id="calc">
     計算
@@ -303,7 +297,12 @@ button:active{
 
 </section>
 
-<section id="resultCard" class="card result-card" style="display:none">
+
+<section
+  id="resultCard"
+  class="card result-card"
+  style="display:none"
+>
 
   <div class="result-label">
     変更後の量
@@ -321,11 +320,8 @@ button:active{
 
 </main>
 
-<script>
 
-/*
- * 各薬剤のモルヒネ内服換算比
- */
+<script>
 
 const ratios = [
 
@@ -333,11 +329,11 @@ const ratios = [
 
   ["ヒドロモルフォン内服 mg", 0.2, "mg"],
 
-  ["オキシコドン内服 mg", 2/3, "mg"],
+  ["オキシコドン内服 mg", 2 / 3, "mg"],
 
-  ["フェンタニル貼付剤（1日用） mg", 1/30, "mg"],
+  ["フェンタニル貼付剤（1日用） mg", 1 / 30, "mg"],
 
-  ["モルヒネ坐剤 mg", 2/3, "mg"],
+  ["モルヒネ坐剤 mg", 2 / 3, "mg"],
 
   ["モルヒネ注射 mg", 0.5, "mg"],
 
@@ -354,20 +350,17 @@ const ratios = [
 ];
 
 
-function formatValue(value, unit){
+function formatValue(value, unit) {
 
-  if(unit === "μg"){
-
+  if (unit === "μg") {
     return Math.round(value) + " μg";
-
   }
 
   return value.toFixed(2) + " mg";
-
 }
 
 
-function calculate(){
+function calculate() {
 
   const amount =
     Number(document.getElementById("amount").value);
@@ -396,17 +389,16 @@ function calculate(){
   resultCard.style.display = "none";
 
 
-  if(
+  if (
     document.getElementById("amount").value === "" ||
     !Number.isFinite(amount) ||
     amount < 0
-  ){
+  ) {
 
     error.textContent =
       "変更前の量を入力してください。";
 
     return;
-
   }
 
 
@@ -417,13 +409,12 @@ function calculate(){
     ratios.find(r => r[0] === toDrug);
 
 
-  if(!fromRatio || !toRatio){
+  if (!fromRatio || !toRatio) {
 
     error.textContent =
       "薬剤を選択してください。";
 
     return;
-
   }
 
 
@@ -432,60 +423,45 @@ function calculate(){
 
 
   /*
-   * ==================================================
    * オキシコドン注射 → モルヒネ注射
-   * ==================================================
    *
-   * 今回追加した特別換算
-   *
-   * オキシコドン注射 5 mg
-   * → モルヒネ注射 4～5 mg
+   * 5 mg → 4～5 mg
    *
    * したがって
-   *
-   * オキシコドン注射 1 mg
-   * → モルヒネ注射 0.8～1.0 mg
+   * 1 mg → 0.8～1.0 mg
    */
 
-  if(
+  if (
     fromDrug === "オキシコドン注射 mg" &&
     toDrug === "モルヒネ注射 mg"
-  ){
+  ) {
 
     const minResult = amount * 0.8;
-    const maxResult = amount * 1.0;
+    const maxResult = amount;
 
     resultText =
       minResult.toFixed(2) +
       "～" +
       maxResult.toFixed(2) +
       " mg";
-
   }
 
 
   /*
-   * ==================================================
    * モルヒネ注射 → オキシコドン注射
-   * ==================================================
    *
-   * 上記の逆換算
-   *
-   * オキシコドン注射 5 mg
-   * ↔ モルヒネ注射 4～5 mg
+   * 4 mg → 5 mg
    *
    * したがって
-   *
-   * モルヒネ注射 1 mg
-   * → オキシコドン注射 1.0～1.25 mg
+   * 1 mg → 1.0～1.25 mg
    */
 
-  else if(
+  else if (
     fromDrug === "モルヒネ注射 mg" &&
     toDrug === "オキシコドン注射 mg"
-  ){
+  ) {
 
-    const minResult = amount * 1.0;
+    const minResult = amount;
     const maxResult = amount * 1.25;
 
     resultText =
@@ -493,108 +469,82 @@ function calculate(){
       "～" +
       maxResult.toFixed(2) +
       " mg";
-
   }
 
 
   /*
-   * ==================================================
-   * ヒドロモルフォン同士の特別換算
-   * ==================================================
+   * ヒドロモルフォン内服 → ヒドロモルフォン注射
    *
-   * 内服 → 注射
    * 5 mg → 1 mg
+   */
+
+  else if (
+    fromDrug === "ヒドロモルフォン内服 mg" &&
+    toDrug === "ヒドロモルフォン注射 mg"
+  ) {
+
+    result = amount / 5;
+  }
+
+
+  /*
+   * ヒドロモルフォン注射 → ヒドロモルフォン内服
    *
-   * 注射 → 内服
    * 1 mg → 2.5 mg
    */
 
-  else if(
-    fromDrug === "ヒドロモルフォン内服 mg" &&
-    toDrug === "ヒドロモルフォン注射 mg"
-  ){
-
-    result = amount / 5;
-
-  }
-
-
-  else if(
+  else if (
     fromDrug === "ヒドロモルフォン注射 mg" &&
     toDrug === "ヒドロモルフォン内服 mg"
-  ){
+  ) {
 
     result = amount * 2.5;
-
   }
 
 
   /*
-   * 同じ薬剤の場合
+   * 同じ薬剤
    */
 
-  else if(fromDrug === toDrug){
+  else if (fromDrug === toDrug) {
 
     result = amount;
-
   }
 
 
   /*
-   * その他の薬剤
-   *
-   * これまでのモルヒネ換算比を利用して計算
-   *
-   * ① 変更前の薬剤をモルヒネ内服相当量に変換
-   *
-   * ② そのモルヒネ換算量を変更後の薬剤に変換
+   * その他の換算
    */
 
-  else{
+  else {
 
     const morphineEquivalent =
       amount / fromRatio[1];
 
     result =
       morphineEquivalent * toRatio[1];
-
   }
 
-
-  /*
-   * 結果表示
-   */
 
   resultDrug.textContent =
     toDrug;
 
 
-  /*
-   * 今回の2方向だけは幅表示。
-   * それ以外は従来どおり単一値を表示。
-   */
-
-  if(resultText !== ""){
+  if (resultText !== "") {
 
     resultValue.textContent =
       resultText;
 
-  }else{
+  } else {
 
     resultValue.textContent =
       formatValue(result, toRatio[2]);
-
   }
 
 
   resultCard.style.display = "block";
-
 }
 
-
-/*
- * 計算ボタン
- */
 
 document
   .getElementById("calc")
@@ -602,10 +552,10 @@ document
 
 
 /*
- * PWA用 Service Worker
+ * Service Worker
  */
 
-if("serviceWorker" in navigator){
+if ("serviceWorker" in navigator) {
 
   window.addEventListener("load", () => {
 
