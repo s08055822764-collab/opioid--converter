@@ -490,23 +490,105 @@ function calculate() {
   /*
    * ヒドロモルフォン注射 → ヒドロモルフォン内服
    *
-   * 1 mg → 2.5 mg
+   * 1 mg → 2.5～3.0 mg
    */
 
- else if (
-  fromDrug === "ヒドロモルフォン注射 mg" &&
-  toDrug === "ヒドロモルフォン内服 mg"
-) {
+  else if (
+    fromDrug === "ヒドロモルフォン注射 mg" &&
+    toDrug === "ヒドロモルフォン内服 mg"
+  ) {
 
-  const minResult = amount * 2.5;
-  const maxResult = amount * 3.0;
+    const minResult = amount * 2.5;
+    const maxResult = amount * 3.0;
 
-  resultText =
-    minResult.toFixed(2) +
-    "～" +
-    maxResult.toFixed(2) +
-    " mg";
-}
+    resultText =
+      minResult.toFixed(2) +
+      "～" +
+      maxResult.toFixed(2) +
+      " mg";
+  }
+
+
+  /*
+   * すべての薬剤 → モルヒネ坐剤
+   *
+   * モルヒネ内服 6 mg
+   * → モルヒネ坐剤 4～4.5 mg
+   *
+   * まず変更前の薬剤をモルヒネ換算し、
+   * そのモルヒネ換算量に 6：4～4.5 を適用する。
+   */
+
+  else if (
+    toDrug === "モルヒネ坐剤 mg"
+  ) {
+
+    const morphineEquivalent =
+      amount / fromRatio[1];
+
+    const minResult =
+      morphineEquivalent * (4 / 6);
+
+    const maxResult =
+      morphineEquivalent * (4.5 / 6);
+
+    resultText =
+      minResult.toFixed(2) +
+      "～" +
+      maxResult.toFixed(2) +
+      " mg";
+  }
+
+
+  /*
+   * モルヒネ坐剤 → 他の薬剤
+   *
+   * モルヒネ坐剤 4 mg
+   * → モルヒネ内服 5.33～6.00 mg
+   *
+   * 坐剤からモルヒネ換算量へ戻す際は、
+   * 4～4.5 mg → 6 mg の逆換算を使用する。
+   */
+
+  else if (
+    fromDrug === "モルヒネ坐剤 mg"
+  ) {
+
+    const minMorphineEquivalent =
+      amount * (6 / 4.5);
+
+    const maxMorphineEquivalent =
+      amount * (6 / 4);
+
+    const minResult =
+      minMorphineEquivalent * toRatio[1];
+
+    const maxResult =
+      maxMorphineEquivalent * toRatio[1];
+
+    /*
+     * フェンタニル注射は μg 表示なので、
+     * 最後に単位を合わせる。
+     */
+
+    if (toRatio[2] === "μg") {
+
+      resultText =
+        Math.round(minResult) +
+        "～" +
+        Math.round(maxResult) +
+        " μg";
+
+    } else {
+
+      resultText =
+        minResult.toFixed(2) +
+        "～" +
+        maxResult.toFixed(2) +
+        " mg";
+    }
+  }
+
 
   /*
    * 同じ薬剤
