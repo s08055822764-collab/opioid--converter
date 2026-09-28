@@ -402,6 +402,25 @@ function calculate() {
   }
 
 
+  /*
+   * トラマドール内服の入力上限
+   *
+   * 変更前の薬剤としてトラマドールを
+   * 直接入力する場合も400 mgを上限とする。
+   */
+
+  if (
+    fromDrug === "トラマドール内服 mg" &&
+    amount > 400
+  ) {
+
+    error.textContent =
+      "トラマドール内服は400 mgまで入力できます。";
+
+    return;
+  }
+
+
   const fromRatio =
     ratios.find(r => r[0] === fromDrug);
 
@@ -611,6 +630,57 @@ function calculate() {
 
     result =
       morphineEquivalent * toRatio[1];
+  }
+
+
+  /*
+   * トラマドール内服の上限400 mgチェック
+   *
+   * 変更後がトラマドール内服の場合、
+   * 通常の換算結果または範囲表示の上限が
+   * 400 mgを超えたら警告を表示する。
+   */
+
+  if (
+    toDrug === "トラマドール内服 mg"
+  ) {
+
+    let maximumResult = null;
+
+    if (resultText !== "") {
+
+      /*
+       * 「○○～○○ mg」の後半を取得
+       */
+
+      const match =
+        resultText.match(/～([0-9.]+)\s*mg/);
+
+      if (match) {
+        maximumResult = Number(match[1]);
+      }
+
+    } else if (Number.isFinite(result)) {
+
+      maximumResult = result;
+    }
+
+
+    if (
+      Number.isFinite(maximumResult) &&
+      maximumResult > 400
+    ) {
+
+      resultDrug.textContent =
+        toDrug;
+
+      resultValue.textContent =
+        "400 mgを超えるため、他のオピオイドをご検討ください。";
+
+      resultCard.style.display = "block";
+
+      return;
+    }
   }
 
 
