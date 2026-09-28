@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -136,6 +137,20 @@ button:active {
   text-align: left;
 }
 
+/* すべての結果に表示する注意コメント */
+.result-warning {
+  margin-top: 14px;
+  padding: 12px;
+  border: 2px solid #d32f2f;
+  border-radius: 10px;
+  background: #fff5f5;
+  color: #c62828;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.7;
+  text-align: left;
+}
+
 .error {
   color: #c62828;
   font-weight: 700;
@@ -164,8 +179,13 @@ button:active {
   .consult-note {
     font-size: 14px;
   }
+
+  .result-warning {
+    font-size: 14px;
+  }
 }
 </style>
+
 </head>
 
 <body>
@@ -178,134 +198,136 @@ button:active {
 
   <div class="field">
 
-    <label for="fromDrug">変更前の薬剤</label>
+```
+<label for="fromDrug">変更前の薬剤</label>
 
-    <select id="fromDrug">
+<select id="fromDrug">
 
-      <option value="モルヒネ内服 mg">
-        モルヒネ内服 mg
-      </option>
+  <option value="モルヒネ内服 mg">
+    モルヒネ内服 mg
+  </option>
 
-      <option value="ヒドロモルフォン内服 mg">
-        ヒドロモルフォン内服 mg
-      </option>
+  <option value="ヒドロモルフォン内服 mg">
+    ヒドロモルフォン内服 mg
+  </option>
 
-      <option value="オキシコドン内服 mg">
-        オキシコドン内服 mg
-      </option>
+  <option value="オキシコドン内服 mg">
+    オキシコドン内服 mg
+  </option>
 
-      <option value="フェンタニル貼付剤（1日用） mg">
-        フェンタニル貼付剤（1日用） mg
-      </option>
+  <option value="フェンタニル貼付剤（1日用） mg">
+    フェンタニル貼付剤（1日用） mg
+  </option>
 
-      <option value="モルヒネ坐剤 mg">
-        モルヒネ坐剤 mg
-      </option>
+  <option value="モルヒネ坐剤 mg">
+    モルヒネ坐剤 mg
+  </option>
 
-      <option value="モルヒネ注射 mg">
-        モルヒネ注射 mg
-      </option>
+  <option value="モルヒネ注射 mg">
+    モルヒネ注射 mg
+  </option>
 
-      <option value="ヒドロモルフォン注射 mg">
-        ヒドロモルフォン注射 mg
-      </option>
+  <option value="ヒドロモルフォン注射 mg">
+    ヒドロモルフォン注射 mg
+  </option>
 
-      <option value="オキシコドン注射 mg">
-        オキシコドン注射 mg
-      </option>
+  <option value="オキシコドン注射 mg">
+    オキシコドン注射 mg
+  </option>
 
-      <option value="フェンタニル注射 μg">
-        フェンタニル注射 μg
-      </option>
+  <option value="フェンタニル注射 μg">
+    フェンタニル注射 μg
+  </option>
 
-      <option value="トラマドール内服 mg">
-        トラマドール内服 mg
-      </option>
+  <option value="トラマドール内服 mg">
+    トラマドール内服 mg
+  </option>
 
-      <option value="デュロテップパッチ（3日用） mg">
-        デュロテップパッチ（3日用） mg
-      </option>
+  <option value="デュロテップパッチ（3日用） mg">
+    デュロテップパッチ（3日用） mg
+  </option>
 
-    </select>
+</select>
+```
 
   </div>
-
 
   <div class="field">
 
-    <label for="amount">変更前の量</label>
+```
+<label for="amount">変更前の量</label>
 
-    <input
-      id="amount"
-      type="number"
-      inputmode="decimal"
-      step="any"
-      min="0"
-      value="0"
-    >
+<input
+  id="amount"
+  type="number"
+  inputmode="decimal"
+  step="any"
+  min="0"
+  value="0"
+>
+```
 
   </div>
-
 
   <div class="arrow">
     ↓
   </div>
 
-
   <div class="field">
 
-    <label for="toDrug">変更後の薬剤</label>
+```
+<label for="toDrug">変更後の薬剤</label>
 
-    <select id="toDrug">
+<select id="toDrug">
 
-      <option value="モルヒネ内服 mg">
-        モルヒネ内服 mg
-      </option>
+  <option value="モルヒネ内服 mg">
+    モルヒネ内服 mg
+  </option>
 
-      <option value="ヒドロモルフォン内服 mg">
-        ヒドロモルフォン内服 mg
-      </option>
+  <option value="ヒドロモルフォン内服 mg">
+    ヒドロモルフォン内服 mg
+  </option>
 
-      <option value="オキシコドン内服 mg">
-        オキシコドン内服 mg
-      </option>
+  <option value="オキシコドン内服 mg">
+    オキシコドン内服 mg
+  </option>
 
-      <option value="フェンタニル貼付剤（1日用） mg">
-        フェンタニル貼付剤（1日用） mg
-      </option>
+  <option value="フェンタニル貼付剤（1日用） mg">
+    フェンタニル貼付剤（1日用） mg
+  </option>
 
-      <option value="モルヒネ坐剤 mg">
-        モルヒネ坐剤 mg
-      </option>
+  <option value="モルヒネ坐剤 mg">
+    モルヒネ坐剤 mg
+  </option>
 
-      <option value="モルヒネ注射 mg">
-        モルヒネ注射 mg
-      </option>
+  <option value="モルヒネ注射 mg">
+    モルヒネ注射 mg
+  </option>
 
-      <option value="ヒドロモルフォン注射 mg">
-        ヒドロモルフォン注射 mg
-      </option>
+  <option value="ヒドロモルフォン注射 mg">
+    ヒドロモルフォン注射 mg
+  </option>
 
-      <option value="オキシコドン注射 mg">
-        オキシコドン注射 mg
-      </option>
+  <option value="オキシコドン注射 mg">
+    オキシコドン注射 mg
+  </option>
 
-      <option value="フェンタニル注射 μg">
-        フェンタニル注射 μg
-      </option>
+  <option value="フェンタニル注射 μg">
+    フェンタニル注射 μg
+  </option>
 
-      <option value="トラマドール内服 mg">
-        トラマドール内服 mg
-      </option>
+  <option value="トラマドール内服 mg">
+    トラマドール内服 mg
+  </option>
 
-      <option value="デュロテップパッチ（3日用） mg">
-        デュロテップパッチ（3日用） mg
-      </option>
+  <option value="デュロテップパッチ（3日用） mg">
+    デュロテップパッチ（3日用） mg
+  </option>
 
-    </select>
+</select>
+```
 
   </div>
-
 
   <button id="calc">
     計算
@@ -314,7 +336,6 @@ button:active {
   <div id="error" class="error"></div>
 
 </section>
-
 
 <section
   id="resultCard"
@@ -336,10 +357,16 @@ button:active {
     ※ 指定された換算比に基づく参考値
   </div>
 
+  <!-- すべての結果に必ず表示する注意コメント -->
+
+  <div id="resultWarning" class="result-warning">
+    必ずご自分でも検算してください。<br>
+    なお、経口等から持続注射に切り替える場合や、オピオイドの種類が変わる場合などは、ここでの当量換算結果よりすこし少なめの投与量から開始して様子をみてベースアップするなどの慎重な対応をご検討ください。
+  </div>
+
 </section>
 
 </main>
-
 
 <script>
 
@@ -406,6 +433,9 @@ function calculate() {
   const consultNote =
     document.getElementById("consultNote");
 
+  const resultWarning =
+    document.getElementById("resultWarning");
+
 
   error.textContent = "";
 
@@ -413,6 +443,8 @@ function calculate() {
 
   consultNote.textContent = "";
   consultNote.style.display = "none";
+
+  resultWarning.style.display = "block";
 
 
   if (
@@ -703,6 +735,8 @@ function calculate() {
       resultValue.textContent =
         "400 mgを超えるため、他のオピオイドをご検討ください。";
 
+      resultWarning.style.display = "block";
+
       resultCard.style.display = "block";
 
       return;
@@ -734,10 +768,6 @@ function calculate() {
    * 相談コメント②
    *
    * 高濃度ヒドロモルフォンへの変更。
-   *
-   * 現在のアプリでは
-   * 「ヒドロモルフォン注射 mg」が
-   * 該当する変更先として設定されています。
    */
 
   if (
@@ -785,6 +815,19 @@ function calculate() {
     resultValue.textContent =
       formatValue(result, toRatio[2]);
   }
+
+
+  /*
+   * すべての結果に注意コメントを表示
+   */
+
+  resultWarning.textContent =
+    "必ずご自分でも検算してください。" +
+    "\n" +
+    "なお、経口等から持続注射に切り替える場合や、オピオイドの種類が変わる場合などは、ここでの当量換算結果よりすこし少なめの投与量から開始して様子をみてベースアップするなどの慎重な対応をご検討ください。";
+
+  resultWarning.style.whiteSpace = "pre-line";
+  resultWarning.style.display = "block";
 
 
   resultCard.style.display = "block";
